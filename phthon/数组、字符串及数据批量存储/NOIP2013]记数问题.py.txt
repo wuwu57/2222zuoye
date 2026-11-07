@@ -1,0 +1,8 @@
+n,x=map(int,input().split())
+h=list(range(1,n+1))
+lst=[]
+for i in h:
+    lst.append(str(i))
+s="".join(lst) 
+cnt=s.count(str(x))
+print(cnt)

@@ -1,0 +1,25 @@
+import math
+def build_huiwen(s):
+    cut = s[:-1]
+    cut_rev = cut[::-1]
+    return s + cut_rev
+
+def is_prime(x):
+    if x < 2:
+        return False
+    if x == 2:
+        return True
+    if x % 2 == 0:
+        return False
+    max_check = math.isqrt(x)
+    for i in range(3, max_check + 1, 2):
+        if x % i == 0:
+            return False
+    return True
+s = input().strip()
+hw = build_huiwen(s)
+n = int(hw)
+if is_prime(n):
+    print("prime")
+else:
+    print("noprime")

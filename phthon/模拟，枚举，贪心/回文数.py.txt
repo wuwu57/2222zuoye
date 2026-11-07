@@ -1,0 +1,38 @@
+cnt = list(map(int, input().split()))
+odd = []
+for i in range(10):
+    if cnt[i] % 2 == 1:
+        odd.append(i)
+if len(odd) > 1:
+    print(-1)
+else:
+    mid = ''
+    if len(odd) == 1:
+        mid = str(odd[0])
+        cnt[odd[0]] -= 1
+    left = []
+    for i in range(1, 10):
+        if cnt[i] > 0:
+            left.append(str(i) * (cnt[i] // 2))
+    left_str = ''.join(left)
+    if left_str == '':
+        # 没有非0数字用来放在开头
+        if cnt[0] > 0:
+            # 存在0，只有总数量=1才合法输出0，其余多个0无解
+            total_zero = cnt[0] + (1 if mid == '0' else 0)
+            if total_zero == 1:
+                print(0)
+            else:
+                print(-1)
+        else:
+            # 没有0，直接输出中间单独的数字
+            if mid != '':
+                print(mid)
+            else:
+                print(-1)
+    else:
+        zero_part = '0' * (cnt[0] // 2)
+        # 核心优化：0插到第一个字符后面，保证字典序最小
+        left_str = left_str[0] + zero_part + left_str[1:]
+        res = left_str + mid + left_str[::-1]
+        print(res)

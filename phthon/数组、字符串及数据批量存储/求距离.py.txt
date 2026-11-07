@@ -1,0 +1,16 @@
+n=int(input())
+a=list(map(int,input().split()))
+p1=0
+p2=0
+for i in range(n):
+    v=a[i]
+    if v==1:
+        p1=i
+    if v==n:
+        pn=i
+ori=abs(p1-pn)
+c1=abs(pn-(n-1))
+c2=abs(p1-0)
+c3 = abs(p1 - (n - 1))  
+c4 = abs(pn - 0)
+print(max(ori,c1,c2,c3,c4))

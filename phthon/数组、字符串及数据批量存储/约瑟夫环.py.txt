@@ -1,0 +1,10 @@
+def joseph(n, k, m):
+    people = list(range(n))
+    current = k   
+    while len(people) > 1:
+        current = (current + m - 1) % len(people)
+        people.pop(current)
+    return people[0]
+n, k, m = map(int, input().split())
+res = joseph(n, k, m)
+print(res)

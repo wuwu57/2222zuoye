@@ -1,0 +1,7 @@
+T=int(input())
+for i in range(T):
+    s1,s2=input().strip().split()
+    if s1.startswith("233")and  s2.startswith("233"):
+        print(int(s1)*int(s2))
+    else:
+        print("false")

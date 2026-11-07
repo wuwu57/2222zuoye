@@ -1,0 +1,48 @@
+import sys
+
+# 补全了 2-8 跨 5 和 4-6 跨 5 的情况
+jump = {
+    (1, 3): 2, (3, 1): 2,
+    (1, 7): 4, (7, 1): 4,
+    (1, 9): 5, (9, 1): 5,
+    (2, 8): 5, (8, 2): 5,
+    (3, 7): 5, (7, 3): 5,
+    (3, 9): 6, (9, 3): 6,
+    (4, 6): 5, (6, 4): 5,
+    (7, 9): 8, (9, 7): 8
+}
+
+def main():
+    # 更健壮的读取方式：一次性读取所有输入并按空白字符分割
+    input_data = sys.stdin.read().split()
+    
+    for s in input_data:
+        if not s:
+            continue
+            
+        vis = set()
+        ok = True
+        prev = int(s[0])
+        vis.add(prev)
+        
+        for c in s[1:]:
+            cur = int(c)
+            # 1. 检查当前数字是否已经被使用过
+            if cur in vis:
+                ok = False
+                break
+                
+            # 2. 检查当前连线和上一个点之间是否有未访问的中间点
+            if (prev, cur) in jump:
+                mid = jump[(prev, cur)]
+                if mid not in vis:
+                    ok = False
+                    break
+                    
+            vis.add(cur)
+            prev = cur
+            
+        print("YES" if ok else "NO")
+
+if __name__ == "__main__":
+    main()

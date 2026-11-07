@@ -1,0 +1,10 @@
+import sys
+T=int(input())
+for i in range(T):
+    n=int(input())
+    lst=list(map(int,sys.stdin.readline().split()))
+    jc=max(lst)-min(lst)
+    pj=sum(lst)/len(lst)
+    res=[(x-pj)**2 for x in lst]
+    fc=sum(res)/len(lst)
+    print(f"{jc} {fc:.3f}")

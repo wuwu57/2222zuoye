@@ -1,0 +1,16 @@
+n = int(input())
+P = list(map(int, input().split()))
+suf_max = [0] * n
+suf_max[-1] = P[-1]
+for i in range(n-2, -1, -1):
+    suf_max[i] = max(P[i], suf_max[i+1])
+
+stack = []
+ans = []
+ptr = 0
+while ptr < n:
+    stack.append(P[ptr])
+    ptr += 1
+    while stack and stack[-1] > (suf_max[ptr] if ptr < n else 0):
+        ans.append(stack.pop())
+print(*ans)

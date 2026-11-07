@@ -1,0 +1,13 @@
+n,k = map(int, input().split())
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
+
+res = 0
+gain = []
+for i in range(n):
+    res += B[i]
+    gain.append(A[i] - B[i])
+
+gain.sort(reverse=True)
+res += sum(gain[:k])
+print(res)
